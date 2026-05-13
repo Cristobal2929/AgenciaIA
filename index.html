@@ -1,86 +1,285 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA FÉNIX | Dominación con IA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        * { box-sizing: border-box; }
-        body { 
-            background-color: #030303; 
-            background-image: radial-gradient(circle at 50% 0%, #002b2b 0%, #030303 70%);
-            color: #fff; font-family: 'Roboto', sans-serif; margin: 0; text-align: center; 
-        }
-        .hero { padding: 60px 20px 20px; }
-        h1 { font-family: 'Orbitron', sans-serif; font-size: 3em; color: #00ffff; text-shadow: 0 0 20px #00ffff; margin: 0; }
-        .section { padding: 20px; max-width: 800px; margin: auto; }
-        .video-card { 
-            background: rgba(10, 10, 10, 0.8); border: 1px solid #222; border-radius: 20px; 
-            padding: 30px 20px; margin: 40px 0; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-        .step-badge { 
-            background: #00ffff; color: #000; padding: 5px 15px; 
-            font-weight: 900; border-radius: 5px; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-            font-family: 'Orbitron', sans-serif;
-        }
-        /* AJUSTE PARA VÍDEOS VERTICALES */
-        .video-wrapper { 
-            position: relative; padding-bottom: 177.77%; height: 0; border-radius: 15px; 
-            overflow: hidden; border: 2px solid #333; background: #000; max-width: 350px; margin: 0 auto;
-        }
-        .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-        
-        .cta-button { 
-            background: #00ffff; color: #000; padding: 20px 40px; 
-            font-size: 1.4em; font-family: 'Orbitron', sans-serif; font-weight: 900; text-decoration: none; 
-            border-radius: 10px; display: inline-block; box-shadow: 0 0 20px #00ffff; transition: 0.3s;
-        }
-        .cta-button:hover { transform: scale(1.05); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SISTEMA FÉNIX</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:
+    radial-gradient(circle at top,#0b3b46 0%,#050505 40%,#010101 100%);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+    padding:90px 20px 50px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:3.7em;
+    font-family:'Orbitron',sans-serif;
+    color:#00ffff;
+    text-shadow:
+    0 0 10px #00ffff,
+    0 0 30px #00ffff;
+    letter-spacing:3px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:25px auto 0;
+    font-size:1.15em;
+    line-height:1.8;
+    color:#d9d9d9;
+}
+
+.highlight{
+    color:#00ffff;
+    font-weight:700;
+}
+
+/* SECTION */
+
+.section{
+    max-width:950px;
+    margin:auto;
+    padding:20px;
+}
+
+/* CARD */
+
+.video-card{
+    background:rgba(12,12,12,0.75);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(0,255,255,0.12);
+    border-radius:28px;
+    padding:35px 25px;
+    margin:50px 0;
+    box-shadow:
+    0 0 20px rgba(0,255,255,0.06),
+    0 20px 40px rgba(0,0,0,0.7);
+    transition:0.4s;
+}
+
+.video-card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(0,255,255,0.35);
+}
+
+/* STEP */
+
+.step{
+    display:inline-block;
+    background:linear-gradient(90deg,#00ffff,#00bfff);
+    color:#000;
+    padding:8px 18px;
+    border-radius:10px;
+    font-family:'Orbitron';
+    font-size:0.9em;
+    font-weight:900;
+    margin-bottom:20px;
+    box-shadow:0 0 15px rgba(0,255,255,0.5);
+}
+
+/* TITLES */
+
+.video-title{
+    font-size:1.7em;
+    margin-bottom:20px;
+    font-family:'Orbitron';
+    color:white;
+}
+
+/* VIDEO */
+
+.video-wrapper{
+    position:relative;
+    width:100%;
+    max-width:360px;
+    margin:auto;
+    border-radius:22px;
+    overflow:hidden;
+    border:2px solid rgba(255,255,255,0.08);
+    box-shadow:
+    0 0 25px rgba(0,255,255,0.12);
+}
+
+.video-wrapper video{
+    width:100%;
+    display:block;
+}
+
+/* TEXT */
+
+.text{
+    margin-top:25px;
+    color:#cfcfcf;
+    font-size:1.05em;
+    line-height:1.8;
+}
+
+/* CTA */
+
+.cta{
+    text-align:center;
+    margin:70px 0;
+}
+
+.cta-button{
+    display:inline-block;
+    background:linear-gradient(90deg,#00ffff,#00bfff);
+    color:#000;
+    padding:22px 48px;
+    border-radius:14px;
+    text-decoration:none;
+    font-size:1.25em;
+    font-family:'Orbitron';
+    font-weight:900;
+    letter-spacing:1px;
+    box-shadow:
+    0 0 20px rgba(0,255,255,0.6),
+    0 10px 25px rgba(0,255,255,0.2);
+    transition:0.3s;
+}
+
+.cta-button:hover{
+    transform:scale(1.06);
+    box-shadow:
+    0 0 35px rgba(0,255,255,0.9),
+    0 15px 35px rgba(0,255,255,0.35);
+}
+
+.warning{
+    margin-top:22px;
+    color:#ff5c5c;
+    font-size:0.95em;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.5em;
+}
+
+.hero p{
+    font-size:1em;
+}
+
+.video-title{
+    font-size:1.3em;
+}
+
+.cta-button{
+    width:100%;
+    max-width:340px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="hero">
-        <h1>SISTEMA FÉNIX</h1>
-        <p>Tu infraestructura de ventas con <span style="color:#00ffff">IA</span>.</p>
-    </div>
+<div class="hero">
 
-    <div class="section">
-        
-        <div class="video-card">
-            <div class="step-badge">FASE 01</div>
-            <h2 style="font-family: 'Orbitron'; font-size: 1.2em;">EL DESPERTAR</h2>
-            <div class="video-wrapper">
-                <video controls playsinline preload="auto">
-                    <source src="Primero.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
+<h1>SISTEMA FÉNIX</h1>
 
-        <div class="video-card">
-            <div class="step-badge">FASE 02</div>
-            <h2 style="font-family: 'Orbitron'; font-size: 1.2em;">LA MAQUINARIA</h2>
-            <div class="video-wrapper">
-                <video controls playsinline preload="auto">
-                    <source src="Segundo.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
+<p>
+Automatiza contenido, inteligencia artificial y sistemas digitales.<br>
+Mientras otros consumen contenido...
+<span class="highlight">tú construyes máquinas digitales que trabajan por ti.</span>
+</p>
 
-        <div class="video-card">
-            <div class="step-badge">FASE 03</div>
-            <h2 style="font-family: 'Orbitron'; font-size: 1.2em;">EL CIERRE</h2>
-            <div class="video-wrapper">
-                <video controls playsinline preload="auto">
-                    <source src="Tercero.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
+</div>
 
-        <a href="https://wa.me/34656691085" class="cta-button">ADQUIRIR SISTEMA FÉNIX</a>
+<div class="section">
 
-    </div>
+<div class="video-card">
+
+<div class="step">FASE 01</div>
+
+<div class="video-title">EL DESPERTAR</div>
+
+<div class="video-wrapper">
+<video controls playsinline preload="auto">
+<source src="Primero.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="text">
+Descubre cómo funciona la estructura detrás del sistema y cómo usar IA para acelerar resultados.
+</div>
+
+</div>
+
+<div class="video-card">
+
+<div class="step">FASE 02</div>
+
+<div class="video-title">LA MAQUINARIA</div>
+
+<div class="video-wrapper">
+<video controls playsinline preload="auto">
+<source src="Segundo.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="text">
+Infraestructura real con automatización, generación de contenido y sistemas inteligentes funcionando.
+</div>
+
+</div>
+
+<div class="video-card">
+
+<div class="step">FASE 03</div>
+
+<div class="video-title">EL DOMINIO</div>
+
+<div class="video-wrapper">
+<video controls playsinline preload="auto">
+<source src="Tercero.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="text">
+Transforma ideas en sistemas digitales capaces de crecer, vender y expandirse automáticamente.
+</div>
+
+</div>
+
+<div class="cta">
+
+<a href="https://wa.me/34656691085" class="cta-button">
+QUIERO EL SISTEMA
+</a>
+
+<div class="warning">
+⚠ Acceso limitado.
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>
