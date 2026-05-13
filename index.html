@@ -4,32 +4,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SISTEMA FÉNIX | Dominación con IA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { background: #000; color: #fff; font-family: 'Roboto', sans-serif; margin: 0; padding: 0; text-align: center; }
-        .hero { padding: 80px 20px; background: radial-gradient(circle, #002b2b 0%, #000 100%); border-bottom: 3px solid #00ffff; }
-        h1 { font-family: 'Orbitron', sans-serif; font-size: 3em; color: #00ffff; text-shadow: 0 0 20px #00ffff; margin: 0; }
-        .section { padding: 40px 20px; max-width: 800px; margin: auto; }
-        .video-card { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 20px; padding: 25px; margin: 40px 0; position: relative; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; border: 1px solid #333; }
-        .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .cta-button { background: #00ffff; color: #000; padding: 20px 40px; font-size: 1.5em; font-weight: bold; text-decoration: none; border-radius: 10px; display: inline-block; box-shadow: 0 0 20px #00ffff; margin-top: 30px; text-transform: uppercase; }
-        .step-title { color: #00ffff; font-family: 'Orbitron', sans-serif; margin-bottom: 15px; display: block; }
+        * { box-sizing: border-box; }
+        body { 
+            background-color: #030303; 
+            background-image: radial-gradient(circle at 50% 0%, #002b2b 0%, #030303 70%);
+            color: #fff; 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            text-align: center; 
+            overflow-x: hidden; 
+        }
+        
+        /* CABECERA */
+        .hero { padding: 80px 20px 40px; border-bottom: 2px solid rgba(0, 255, 255, 0.2); }
+        h1 { 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 3.5em; 
+            color: #00ffff; 
+            text-shadow: 0 0 25px rgba(0, 255, 255, 0.8); 
+            margin: 0; 
+            letter-spacing: 2px; 
+            line-height: 1.1;
+        }
+        .hero p { 
+            font-size: 1.3em; 
+            color: #a0a0a0; 
+            margin-top: 20px; 
+            font-weight: 300; 
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cyan-text { color: #00ffff; font-weight: 700; text-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+
+        /* CONTENEDOR PRINCIPAL */
+        .section { padding: 40px 20px 80px; max-width: 800px; margin: auto; }
+        
+        /* TARJETAS DE VÍDEO */
+        .video-card { 
+            background: rgba(10, 10, 10, 0.8); 
+            border: 1px solid #222; 
+            border-radius: 20px; 
+            padding: 30px 20px; 
+            margin: 50px 0; 
+            position: relative; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            transition: all 0.3s ease;
+        }
+        .video-card:hover {
+            border-color: #00ffff;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .step-badge { 
+            background: linear-gradient(90deg, #00ffff, #008b8b); 
+            color: #000; 
+            padding: 8px 20px; 
+            font-weight: 900; 
+            border-radius: 30px; 
+            position: absolute; 
+            top: -20px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            font-family: 'Orbitron', sans-serif; 
+            letter-spacing: 2px;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+        }
+
+        .video-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em;
+            color: #fff;
+            margin: 20px 0 15px;
+        }
+
+        /* REPRODUCTOR DE VÍDEO (PROPORCIÓN TIKTOK/SHORTS 9:16) */
+        .video-wrapper { 
+            position: relative; 
+            padding-bottom: 177.77%; /* Proporción vertical perfecta */
+            height: 0; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 2px solid #333; 
+            background: #000;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .video-wrapper video { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+        }
+
+        /* BOTÓN DE COMPRA */
+        .cta-container { margin-top: 60px; }
+        .cta-button { 
+            background: linear-gradient(45deg, #00ffff, #005555); 
+            color: #000; 
+            padding: 25px 50px; 
+            font-size: 1.5em; 
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            display: inline-block; 
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5); 
+            transition: 0.3s; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            border: 2px solid transparent;
+        }
+        .cta-button:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.8); 
+            background: #000;
+            color: #00ffff;
+            border-color: #00ffff;
+        }
+        
+        .urgency { color: #ff3333; font-weight: bold; margin-top: 20px; font-size: 1.1em; letter-spacing: 1px;}
     </style>
 </head>
 <body>
 
     <div class="hero">
         <h1>SISTEMA FÉNIX</h1>
-        <p>La Inteligencia Artificial que factura por ti.</p>
+        <p>Deja de perseguir clientes. Construye la <span class="cyan-text">Infraestructura de IA</span> que los atrae y los cierra en piloto automático.</p>
     </div>
 
     <div class="section">
         
         <div class="video-card">
-            <span class="step-title">FASE 01: EL DESPERTAR</span>
+            <div class="step-badge">FASE 01</div>
+            <h2 class="video-title">EL DESPERTAR</h2>
             <div class="video-wrapper">
-                <video controls preload="auto">
+                <video controls playsinline preload="metadata">
                     <source src="https://cristobal2929-cristobal2929ageciaia.hf.space/video/Primero.mp4" type="video/mp4">
                     Tu navegador no soporta el video.
                 </video>
@@ -37,9 +153,10 @@
         </div>
 
         <div class="video-card">
-            <span class="step-title">FASE 02: LA MAQUINARIA</span>
+            <div class="step-badge">FASE 02</div>
+            <h2 class="video-title">LA MAQUINARIA</h2>
             <div class="video-wrapper">
-                <video controls preload="auto">
+                <video controls playsinline preload="metadata">
                     <source src="https://cristobal2929-cristobal2929ageciaia.hf.space/video/Segundo.mp4" type="video/mp4">
                     Tu navegador no soporta el video.
                 </video>
@@ -47,16 +164,20 @@
         </div>
 
         <div class="video-card">
-            <span class="step-title">FASE 03: EL CIERRE</span>
+            <div class="step-badge">FASE 03</div>
+            <h2 class="video-title">EL CIERRE</h2>
             <div class="video-wrapper">
-                <video controls preload="auto">
+                <video controls playsinline preload="metadata">
                     <source src="https://cristobal2929-cristobal2929ageciaia.hf.space/video/Tercero.mp4" type="video/mp4">
                     Tu navegador no soporta el video.
                 </video>
             </div>
         </div>
 
-        <a href="https://wa.me/34656691085" class="cta-button">ADQUIRIR SISTEMA FÉNIX</a>
+        <div class="cta-container">
+            <a href="https://wa.me/34656691085" class="cta-button">ADQUIRIR SISTEMA FÉNIX</a>
+            <p class="urgency">⚠️ ACCESO RESTRINGIDO A MENTES DE ÉLITE</p>
+        </div>
 
     </div>
 
