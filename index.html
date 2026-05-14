@@ -1,160 +1,316 @@
-<div class="hero">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA FÉNIX | El Despertar de la IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS IMPERIAL --- */
+        :root {
+            --primary: #00ffff;
+            --bg: #000000;
+            --card-bg: rgba(15, 15, 25, 0.8);
+            --text: #ffffff;
+            --shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
 
-<h1>SISTEMA FÉNIX</h1>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<p>
-<b>La Infraestructura de IA que domina el mercado mientras tú duermes.</b>
-</p>
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-<p>
-Deja de perseguir clientes manualmente.<br>
-Activa el motor viral que atrae, filtra y cierra ventas en piloto automático.
-</p>
+        /* Fondo de partículas sutil */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #0a1a1a 0%, #000 100%);
+            z-index: -1;
+        }
 
-</div>
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 70%, var(--bg) 100%);
+        }
 
-<div class="section">
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 700;
+            letter-spacing: 10px;
+            color: var(--primary);
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+            margin-bottom: 20px;
+            animation: pulse 3s infinite;
+        }
 
-<!-- SECCIÓN PROBLEMA -->
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            color: #ccc;
+        }
 
-<div class="video-card">
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
 
-<div class="video-title">⚠ EL MARKETING TRADICIONAL HA MUERTO</div>
+        .video-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            opacity: 0; /* Para el efecto JS */
+            transform: translateY(30px);
+        }
 
-<div class="text">
-Si todavía pierdes horas creando contenido que nadie ve o enviando mensajes uno a uno esperando vender...
-<br><br>
-Estás destruyendo tu activo más importante:
-<b>tu tiempo.</b>
-<br><br>
-Mientras otros siguen atrapados en métodos antiguos, tú puedes construir una infraestructura automática impulsada por Inteligencia Artificial.
-</div>
+        .video-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.01);
+        }
 
-</div>
+        .video-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+            text-transform: uppercase;
+        }
 
-<!-- SOLUCIÓN -->
+        .step {
+            background: var(--primary);
+            color: #000;
+            display: inline-block;
+            padding: 2px 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
 
-<div class="video-card">
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 25px 0;
+            background: #050505;
+            border: 1px solid #222;
+        }
 
-<div class="video-title">🔱 NACE EL SISTEMA FÉNIX</div>
+        .video-wrapper video {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+        }
 
-<div class="text">
+        .text {
+            color: #ddd;
+            font-size: 1.1rem;
+        }
 
-No es un curso.<br>
-No es teoría.<br>
-<b>Es una maquinaria real de IA diseñada para dominar el mercado digital.</b>
+        .text b {
+            color: var(--primary);
+        }
 
-<br><br>
+        .cta {
+            text-align: center;
+            padding: 80px 20px;
+        }
 
-✅ Generar contenido viral 24/7 sin aparecer en cámara.<br><br>
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: #000;
+            padding: 20px 40px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
 
-✅ Hackear el algoritmo de YouTube y TikTok para poner tus productos frente a miles de personas.<br><br>
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 60px rgba(0, 255, 255, 0.6);
+        }
 
-✅ Automatizar la prospección para que hables solo con clientes preparados para comprar.
+        .warning {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #ff4444;
+            font-family: 'JetBrains Mono', monospace;
+        }
 
-</div>
+        /* Animaciones */
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; text-shadow: 0 0 50px rgba(0, 255, 255, 0.8); }
+            100% { opacity: 0.8; }
+        }
 
-</div>
+        .visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            transition: all 0.8s ease-out;
+        }
 
-<!-- VIDEO 1 -->
+        @media (max-width: 600px) {
+            .video-card { padding: 25px; }
+            .hero h1 { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
 
-<div class="video-card">
+    <div class="hero">
+        <h1>SISTEMA FÉNIX</h1>
+        <p><b>La Infraestructura de IA que domina el mercado mientras tú duermes.</b></p>
+        <p style="margin-top:20px; color: #888;">
+            Deja de perseguir clientes manualmente.<br>
+            Activa el motor viral que atrae, filtra y cierra ventas en piloto automático.
+        </p>
+    </div>
 
-<div class="step">FASE 01</div>
+    <div class="section">
+        <div class="video-card">
+            <div class="video-title">⚠ EL MARKETING TRADICIONAL HA MUERTO</div>
+            <div class="text">
+                Si todavía pierdes horas creando contenido que nadie ve o enviando mensajes uno a uno esperando vender...
+                <br><br>
+                Estás destruyendo tu activo más importante: <b>tu tiempo.</b>
+                <br><br>
+                Mientras otros siguen atrapados en métodos antiguos, tú puedes construir una infraestructura automática impulsada por Inteligencia Artificial.
+            </div>
+        </div>
 
-<div class="video-title">EL DESPERTAR DIGITAL</div>
+        <div class="video-card">
+            <div class="video-title">🔱 NACE EL SISTEMA FÉNIX</div>
+            <div class="text">
+                No es un curso. No es teoría.<br>
+                <b>Es una maquinaria real de IA diseñada para dominar el mercado digital.</b>
+                <br><br>
+                ✅ Generar contenido viral 24/7 sin aparecer en cámara.<br><br>
+                ✅ Hackear el algoritmo de YouTube y TikTok para poner tus productos frente a miles de personas.<br><br>
+                ✅ Automatizar la prospección para que hables solo con clientes preparados para comprar.
+            </div>
+        </div>
 
-<div class="video-wrapper">
-<video controls playsinline preload="auto">
-<source src="Primero.mp4" type="video/mp4">
-</video>
-</div>
+        <div class="video-card">
+            <div class="step">FASE 01</div>
+            <div class="video-title">EL DESPERTAR DIGITAL</div>
+            <div class="video-wrapper">
+                <video controls playsinline preload="auto">
+                    <source src="Primero.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="text">
+                Entiende cómo el Sistema Fénix detecta tendencias antes que nadie y posiciona tu marca en la cima.
+            </div>
+        </div>
 
-<div class="text">
-Entiende cómo el Sistema Fénix detecta tendencias antes que nadie y posiciona tu marca en la cima.
-</div>
+        <div class="video-card">
+            <div class="step">FASE 02</div>
+            <div class="video-title">LA MAQUINARIA EN ACCIÓN</div>
+            <div class="video-wrapper">
+                <video controls playsinline preload="auto">
+                    <source src="Segundo.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="text">
+                Mira las tripas del motor.<br><br>
+                <b>Automatización real.</b><br>
+                Guiones persuasivos generados por IA.<br>
+                Edición imperial sin esfuerzo humano.
+            </div>
+        </div>
 
-</div>
+        <div class="video-card">
+            <div class="step">FASE 03</div>
+            <div class="video-title">TU NUEVA REALIDAD</div>
+            <div class="video-wrapper">
+                <video controls playsinline preload="auto">
+                    <source src="Tercero.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="text">
+                El cierre definitivo.<br><br>
+                Descubre cómo este sistema se integra en tu negocio para que tu única preocupación sea gestionar el flujo de caja.
+            </div>
+        </div>
 
-<!-- VIDEO 2 -->
+        <div class="video-card">
+            <div class="video-title">🔥 UNA VENTAJA INJUSTA</div>
+            <div class="text">
+                Al adquirir el Sistema Fénix no compras un simple software.
+                <br><br>
+                <b>Compras una ventaja injusta sobre tu competencia.</b>
+                <br><br>
+                Es tener una maquinaria digital trabajando para tu negocio día y noche mientras otros siguen atrapados haciendo tareas manuales.
+            </div>
+        </div>
 
-<div class="video-card">
+        <div class="cta">
+            <a href="https://wa.me/34656691085" class="cta-button">
+                QUIERO MI SISTEMA FÉNIX
+            </a>
+            <div class="warning">
+                ⚠ Acceso limitado para mantener la exclusividad y potencia del sistema.
+            </div>
+        </div>
+    </div>
 
-<div class="step">FASE 02</div>
+    <script>
+        // Efecto de aparición al hacer scroll (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1
+        };
 
-<div class="video-title">LA MAQUINARIA EN ACCIÓN</div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-<div class="video-wrapper">
-<video controls playsinline preload="auto">
-<source src="Segundo.mp4" type="video/mp4">
-</video>
-</div>
+        document.querySelectorAll('.video-card').forEach(card => {
+            observer.observe(card);
+        });
 
-<div class="text">
-Mira las tripas del motor.<br><br>
-
-Automatización real.<br>
-Guiones persuasivos generados por IA.<br>
-Edición imperial sin esfuerzo humano.
-</div>
-
-</div>
-
-<!-- VIDEO 3 -->
-
-<div class="video-card">
-
-<div class="step">FASE 03</div>
-
-<div class="video-title">TU NUEVA REALIDAD</div>
-
-<div class="video-wrapper">
-<video controls playsinline preload="auto">
-<source src="Tercero.mp4" type="video/mp4">
-</video>
-</div>
-
-<div class="text">
-El cierre definitivo.<br><br>
-
-Descubre cómo este sistema se integra en tu negocio para que tu única preocupación sea gestionar el flujo de caja.
-</div>
-
-</div>
-
-<!-- OFERTA -->
-
-<div class="video-card">
-
-<div class="video-title">🔥 UNA VENTAJA INJUSTA</div>
-
-<div class="text">
-
-Al adquirir el Sistema Fénix no compras un simple software.
-<br><br>
-
-<b>Compras una ventaja injusta sobre tu competencia.</b>
-
-<br><br>
-
-Es tener una maquinaria digital trabajando para tu negocio día y noche mientras otros siguen atrapados haciendo tareas manuales.
-
-</div>
-
-</div>
-
-<!-- CTA -->
-
-<div class="cta">
-
-<a href="https://wa.me/34656691085" class="cta-button">
-QUIERO MI SISTEMA FÉNIX
-</a>
-
-<div class="warning">
-⚠ Acceso limitado para mantener la exclusividad y potencia del sistema.
-</div>
-
-</div>
-
-</div>
+        // Pausar otros vídeos cuando uno se reproduce
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+            video.addEventListener('play', () => {
+                videos.forEach(otherVideo => {
+                    if (otherVideo !== video) otherVideo.pause();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
