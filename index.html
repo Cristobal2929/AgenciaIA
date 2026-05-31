@@ -1,316 +1,313 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA FÉNIX | El Despertar de la IA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <style>
-        /* --- CSS IMPERIAL --- */
-        :root {
-            --primary: #00ffff;
-            --bg: #000000;
-            --card-bg: rgba(15, 15, 25, 0.8);
-            --text: #ffffff;
-            --shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fénix Hybrid Engine — La IA produce, tú decides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0705;
+    --bg2:#120d08;
+    --fire:#ff6a00;
+    --gold:#ffb627;
+    --ember:#ff3d00;
+    --text:#f5ede4;
+    --muted:#a3938200;
+    --muted2:#9a8a78;
+    --card:#16100a;
+    --line:#2a1d12;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Sora',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  /* Fondo con brasas */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,106,0,.18), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255,61,0,.12), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 80%, rgba(255,182,39,.08), transparent 60%);
+    pointer-events:none;z-index:0;
+  }
+  .grain{
+    position:fixed;inset:0;opacity:.04;z-index:1;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .content{position:relative;z-index:2}
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  /* Header */
+  header{padding:28px 0;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Archivo Black';font-size:1.3rem;letter-spacing:-.5px;display:flex;align-items:center;gap:10px}
+  .logo .mark{
+    width:34px;height:34px;border-radius:9px;
+    background:linear-gradient(135deg,var(--fire),var(--gold));
+    display:grid;place-items:center;font-size:1.1rem;
+    box-shadow:0 0 24px rgba(255,106,0,.5);
+  }
+  .logo span{background:linear-gradient(90deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-cta{
+    font-size:.85rem;color:var(--gold);border:1px solid var(--line);
+    padding:9px 18px;border-radius:50px;text-decoration:none;transition:.3s;
+  }
+  .nav-cta:hover{border-color:var(--fire);background:rgba(255,106,0,.08)}
 
-        /* Fondo de partículas sutil */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #0a1a1a 0%, #000 100%);
-            z-index: -1;
-        }
+  /* Hero */
+  .hero{padding:60px 0 50px;text-align:center}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--gold);border:1px solid var(--line);
+    padding:7px 16px;border-radius:50px;margin-bottom:28px;
+    background:rgba(255,182,39,.05);
+  }
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--fire);box-shadow:0 0 10px var(--fire);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .hero h1{
+    font-family:'Archivo Black';
+    font-size:clamp(2.4rem,7vw,4.6rem);
+    line-height:.98;letter-spacing:-1.5px;margin-bottom:24px;
+  }
+  .hero h1 .l2{
+    background:linear-gradient(100deg,var(--fire),var(--gold) 60%,var(--ember));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    display:block;
+  }
+  .hero p{font-size:clamp(1.05rem,2.5vw,1.3rem);color:var(--muted2);max-width:620px;margin:0 auto 38px;font-weight:300}
+  .hero p strong{color:var(--text);font-weight:600}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--fire),var(--ember));
+    color:#fff;font-weight:700;font-size:1.05rem;
+    padding:16px 34px;border-radius:50px;text-decoration:none;
+    box-shadow:0 8px 30px rgba(255,61,0,.4);transition:.3s;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(255,61,0,.55)}
+  .btn-ghost{
+    color:var(--text);border:1px solid var(--line);font-weight:600;
+    padding:16px 30px;border-radius:50px;text-decoration:none;transition:.3s;
+  }
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 70%, var(--bg) 100%);
-        }
+  /* Video */
+  .video-sec{padding:30px 0 60px}
+  .video-frame{
+    position:relative;max-width:380px;margin:0 auto;
+    border-radius:24px;overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 0 60px rgba(255,106,0,.25), 0 30px 60px rgba(0,0,0,.6);
+    aspect-ratio:9/16;
+  }
+  .video-frame iframe{width:100%;height:100%;border:0;display:block}
+  .video-label{text-align:center;margin-top:18px;color:var(--muted2);font-size:.9rem}
+  .video-label strong{color:var(--gold)}
 
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 700;
-            letter-spacing: 10px;
-            color: var(--primary);
-            text-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
-            margin-bottom: 20px;
-            animation: pulse 3s infinite;
-        }
+  /* Secciones */
+  section{padding:60px 0;position:relative}
+  .eyebrow{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--fire);margin-bottom:14px;font-weight:600}
+  h2{font-family:'Archivo Black';font-size:clamp(1.8rem,5vw,3rem);line-height:1.05;letter-spacing:-1px;margin-bottom:20px}
+  h2 .hl{color:var(--gold)}
+  .lead{color:var(--muted2);font-size:1.1rem;max-width:600px;font-weight:300}
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            color: #ccc;
-        }
+  /* Problema */
+  .problem{background:linear-gradient(180deg,transparent,rgba(255,61,0,.04),transparent)}
+  .problem .big-q{font-family:'Archivo Black';font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.2;letter-spacing:-.5px}
+  .problem .big-q em{color:var(--ember);font-style:normal}
 
-        .section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 50px 20px;
-        }
+  /* Pasos */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:40px}
+  .step{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:26px;transition:.3s;position:relative;overflow:hidden;
+  }
+  .step:hover{transform:translateY(-5px);border-color:var(--fire)}
+  .step .num{
+    font-family:'Archivo Black';font-size:2.4rem;
+    background:linear-gradient(135deg,var(--fire),var(--gold));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    line-height:1;margin-bottom:12px;
+  }
+  .step h3{font-size:1.1rem;margin-bottom:8px;font-weight:700}
+  .step p{color:var(--muted2);font-size:.94rem;font-weight:300}
 
-        .video-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 60px;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            opacity: 0; /* Para el efecto JS */
-            transform: translateY(30px);
-        }
+  /* Diferencia */
+  .diff{background:var(--bg2);border-radius:30px;padding:50px 36px;border:1px solid var(--line);text-align:center;margin:20px 0}
+  .diff .punch{
+    font-family:'Archivo Black';font-size:clamp(1.6rem,4.5vw,2.8rem);
+    line-height:1.1;letter-spacing:-.5px;margin-bottom:18px;
+  }
+  .diff .punch span{background:linear-gradient(90deg,var(--gold),var(--fire));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .diff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:34px;text-align:left}
+  .diff-item{display:flex;gap:12px;align-items:flex-start}
+  .diff-item .ico{color:var(--fire);font-size:1.3rem;flex-shrink:0}
+  .diff-item p{font-size:.96rem;color:var(--muted2)}
+  .diff-item strong{color:var(--text);display:block;font-weight:600;margin-bottom:2px}
 
-        .video-card:hover {
-            border-color: var(--primary);
-            transform: scale(1.01);
-        }
+  /* Para quién */
+  .who-list{display:flex;flex-direction:column;gap:14px;margin-top:30px}
+  .who{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+  .who .em{font-size:1.5rem}
+  .who p{font-weight:300;color:var(--muted2)}
+  .who strong{color:var(--text);font-weight:600}
 
-        .video-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: block;
-            text-transform: uppercase;
-        }
+  /* CTA final */
+  .final{text-align:center;background:linear-gradient(180deg,transparent,rgba(255,106,0,.06))}
+  .final h2{margin-bottom:18px}
+  .final p{color:var(--muted2);max-width:500px;margin:0 auto 34px;font-weight:300}
 
-        .step {
-            background: var(--primary);
-            color: #000;
-            display: inline-block;
-            padding: 2px 15px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
+  footer{padding:40px 0;text-align:center;color:var(--muted2);font-size:.85rem;border-top:1px solid var(--line)}
 
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 10px;
-            margin: 25px 0;
-            background: #050505;
-            border: 1px solid #222;
-        }
+  /* WhatsApp flotante */
+  .wa-float{
+    position:fixed;bottom:22px;right:22px;z-index:50;
+    background:#25D366;color:#fff;width:62px;height:62px;border-radius:50%;
+    display:grid;place-items:center;text-decoration:none;
+    box-shadow:0 8px 30px rgba(37,211,102,.5);transition:.3s;
+    animation:bob 2.5s ease-in-out infinite;
+  }
+  .wa-float:hover{transform:scale(1.1)}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .wa-float svg{width:32px;height:32px}
 
-        .video-wrapper video {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
-        }
+  .btn-wa{
+    background:#25D366;color:#fff;font-weight:700;font-size:1.05rem;
+    padding:16px 34px;border-radius:50px;text-decoration:none;
+    box-shadow:0 8px 30px rgba(37,211,102,.4);transition:.3s;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn-wa:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(37,211,102,.55)}
+  .btn-wa svg{width:22px;height:22px;fill:#fff}
 
-        .text {
-            color: #ddd;
-            font-size: 1.1rem;
-        }
-
-        .text b {
-            color: var(--primary);
-        }
-
-        .cta {
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--primary);
-            color: #000;
-            padding: 20px 40px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 0 60px rgba(0, 255, 255, 0.6);
-        }
-
-        .warning {
-            margin-top: 25px;
-            font-size: 0.9rem;
-            color: #ff4444;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Animaciones */
-        @keyframes pulse {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; text-shadow: 0 0 50px rgba(0, 255, 255, 0.8); }
-            100% { opacity: 0.8; }
-        }
-
-        .visible {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            transition: all 0.8s ease-out;
-        }
-
-        @media (max-width: 600px) {
-            .video-card { padding: 25px; }
-            .hero h1 { font-size: 3.5rem; }
-        }
-    </style>
+  .reveal{opacity:0;transform:translateY(30px);transition:.8s}
+  .reveal.show{opacity:1;transform:none}
+</style>
 </head>
 <body>
+<div class="grain"></div>
+<div class="content">
 
-    <div class="hero">
-        <h1>SISTEMA FÉNIX</h1>
-        <p><b>La Infraestructura de IA que domina el mercado mientras tú duermes.</b></p>
-        <p style="margin-top:20px; color: #888;">
-            Deja de perseguir clientes manualmente.<br>
-            Activa el motor viral que atrae, filtra y cierra ventas en piloto automático.
-        </p>
+<div class="wrap">
+  <header>
+    <div class="logo"><span class="mark">🔥</span> FÉNIX <span>HYBRID</span></div>
+    <a href="#contacto" class="nav-cta">Hablar conmigo</a>
+  </header>
+</div>
+
+<!-- HERO -->
+<div class="wrap hero">
+  <div class="badge"><span class="dot"></span> Producción de video con IA + Control humano</div>
+  <h1>LA IA PRODUCE.<span class="l2">TÚ DECIDES.</span></h1>
+  <p>Transforma cualquier idea o documento en un <strong>video comercial profesional</strong> en cuestión de horas. Sin perder el control creativo. Sin reemplazar tu talento.</p>
+  <div class="cta-row">
+    <a href="#video" class="btn-primary">▶ Ver el sistema en acción</a>
+    <a href="#contacto" class="btn-ghost">Quiero saber más</a>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<div class="wrap video-sec" id="video">
+  <div class="video-frame">
+    <iframe src="https://www.youtube.com/embed/7V6x3omRXxY" title="Fénix Hybrid Engine" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <p class="video-label">☝️ Este video lo produjo <strong>el propio sistema Fénix</strong>. Voz, montaje, subtítulos y música: todo automático.</p>
+</div>
+
+<!-- PROBLEMA -->
+<section class="problem">
+  <div class="wrap">
+    <div class="eyebrow">El problema</div>
+    <p class="big-q">¿Cuántas oportunidades de venta pierdes por <em>no publicar contenido a tiempo?</em></p>
+    <p class="lead" style="margin-top:20px">Crear video constante consume horas y dinero: guion, grabación, edición, voz, subtítulos, montaje. La mayoría de negocios se quedan atrás por falta de tiempo y recursos.</p>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Cómo funciona</div>
+    <h2>De una idea a un <span class="hl">video terminado</span></h2>
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><h3>Aporta tu conocimiento</h3><p>Sube un PDF o pega tu contenido. El sistema extrae la información clave.</p></div>
+      <div class="step reveal"><div class="num">02</div><h3>La IA propone, tú editas</h3><p>Genera un guion con psicología de venta que tú ajustas a tu gusto.</p></div>
+      <div class="step reveal"><div class="num">03</div><h3>Tu material, tu voz</h3><p>Sube tus imágenes y videos. Usa voz IA o graba la tuya. Añade tu música.</p></div>
+      <div class="step reveal"><div class="num">04</div><h3>El sistema monta y tú apruebas</h3><p>Composición profesional con subtítulos y efectos. Revisas y publicas.</p></div>
     </div>
+  </div>
+</section>
 
-    <div class="section">
-        <div class="video-card">
-            <div class="video-title">⚠ EL MARKETING TRADICIONAL HA MUERTO</div>
-            <div class="text">
-                Si todavía pierdes horas creando contenido que nadie ve o enviando mensajes uno a uno esperando vender...
-                <br><br>
-                Estás destruyendo tu activo más importante: <b>tu tiempo.</b>
-                <br><br>
-                Mientras otros siguen atrapados en métodos antiguos, tú puedes construir una infraestructura automática impulsada por Inteligencia Artificial.
-            </div>
-        </div>
-
-        <div class="video-card">
-            <div class="video-title">🔱 NACE EL SISTEMA FÉNIX</div>
-            <div class="text">
-                No es un curso. No es teoría.<br>
-                <b>Es una maquinaria real de IA diseñada para dominar el mercado digital.</b>
-                <br><br>
-                ✅ Generar contenido viral 24/7 sin aparecer en cámara.<br><br>
-                ✅ Hackear el algoritmo de YouTube y TikTok para poner tus productos frente a miles de personas.<br><br>
-                ✅ Automatizar la prospección para que hables solo con clientes preparados para comprar.
-            </div>
-        </div>
-
-        <div class="video-card">
-            <div class="step">FASE 01</div>
-            <div class="video-title">EL DESPERTAR DIGITAL</div>
-            <div class="video-wrapper">
-                <video controls playsinline preload="auto">
-                    <source src="Primero.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="text">
-                Entiende cómo el Sistema Fénix detecta tendencias antes que nadie y posiciona tu marca en la cima.
-            </div>
-        </div>
-
-        <div class="video-card">
-            <div class="step">FASE 02</div>
-            <div class="video-title">LA MAQUINARIA EN ACCIÓN</div>
-            <div class="video-wrapper">
-                <video controls playsinline preload="auto">
-                    <source src="Segundo.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="text">
-                Mira las tripas del motor.<br><br>
-                <b>Automatización real.</b><br>
-                Guiones persuasivos generados por IA.<br>
-                Edición imperial sin esfuerzo humano.
-            </div>
-        </div>
-
-        <div class="video-card">
-            <div class="step">FASE 03</div>
-            <div class="video-title">TU NUEVA REALIDAD</div>
-            <div class="video-wrapper">
-                <video controls playsinline preload="auto">
-                    <source src="Tercero.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="text">
-                El cierre definitivo.<br><br>
-                Descubre cómo este sistema se integra en tu negocio para que tu única preocupación sea gestionar el flujo de caja.
-            </div>
-        </div>
-
-        <div class="video-card">
-            <div class="video-title">🔥 UNA VENTAJA INJUSTA</div>
-            <div class="text">
-                Al adquirir el Sistema Fénix no compras un simple software.
-                <br><br>
-                <b>Compras una ventaja injusta sobre tu competencia.</b>
-                <br><br>
-                Es tener una maquinaria digital trabajando para tu negocio día y noche mientras otros siguen atrapados haciendo tareas manuales.
-            </div>
-        </div>
-
-        <div class="cta">
-            <a href="https://wa.me/34656691085" class="cta-button">
-                QUIERO MI SISTEMA FÉNIX
-            </a>
-            <div class="warning">
-                ⚠ Acceso limitado para mantener la exclusividad y potencia del sistema.
-            </div>
-        </div>
+<!-- DIFERENCIA -->
+<section>
+  <div class="wrap">
+    <div class="diff reveal">
+      <p class="punch">No reemplazamos a las personas.<br><span>Las potenciamos.</span></p>
+      <p class="lead" style="margin:0 auto">No es "IA sola" que genera contenido genérico. Es un sistema híbrido donde tú mantienes el control creativo en cada paso.</p>
+      <div class="diff-grid">
+        <div class="diff-item"><span class="ico">✦</span><p><strong>Tu guion</strong>La IA lo escribe, tú lo editas y lo apruebas.</p></div>
+        <div class="diff-item"><span class="ico">✦</span><p><strong>Tu voz</strong>Voz IA con acento de tu país, o graba la tuya propia.</p></div>
+        <div class="diff-item"><span class="ico">✦</span><p><strong>Tu material</strong>Tus imágenes, tus videos, tu música de fondo.</p></div>
+        <div class="diff-item"><span class="ico">✦</span><p><strong>Tu identidad</strong>Mantienes tu estética y tu dirección artística.</p></div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <script>
-        // Efecto de aparición al hacer scroll (Intersection Observer)
-        const observerOptions = {
-            threshold: 0.1
-        };
+<!-- PARA QUIÉN -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Para quién es</div>
+    <h2>Pensado para quien <span class="hl">produce de verdad</span></h2>
+    <div class="who-list">
+      <div class="who reveal"><span class="em">🎬</span><p><strong>Productoras y creadores</strong> que quieren acelerar su producción sin perder su sello.</p></div>
+      <div class="who reveal"><span class="em">🚀</span><p><strong>Negocios y marcas</strong> que necesitan presencia constante sin gastar en equipos caros.</p></div>
+      <div class="who reveal"><span class="em">📈</span><p><strong>Emprendedores</strong> que quieren convertir su conocimiento en contenido que vende.</p></div>
+    </div>
+  </div>
+</section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+<!-- CTA FINAL -->
+<section class="final" id="contacto">
+  <div class="wrap">
+    <div class="eyebrow">Hablemos</div>
+    <h2>Tu contenido <span class="hl">no puede esperar</span></h2>
+    <p>Cuéntame qué necesitas y te muestro cómo Fénix puede adaptarse a tu proyecto. Sin compromiso.</p>
+    <a href="https://wa.me/34656691085?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20F%C3%A9nix%20Hybrid%20y%20me%20interesa%20saber%20m%C3%A1s" class="btn-wa">
+      <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
+      Escríbeme por WhatsApp
+    </a>
+  </div>
+</section>
 
-        document.querySelectorAll('.video-card').forEach(card => {
-            observer.observe(card);
-        });
+<footer>
+  <div class="wrap">
+    🔥 Fénix Hybrid Engine · La IA produce, tú decides<br>
+    © 2026 · Todos los derechos reservados
+  </div>
+</footer>
 
-        // Pausar otros vídeos cuando uno se reproduce
-        const videos = document.querySelectorAll('video');
-        videos.forEach(video => {
-            video.addEventListener('play', () => {
-                videos.forEach(otherVideo => {
-                    if (otherVideo !== video) otherVideo.pause();
-                });
-            });
-        });
-    </script>
+</div>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/34656691085?text=Hola!%20Me%20interesa%20F%C3%A9nix%20Hybrid" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.3A10 10 0 1 0 12 2z"/></svg>
+</a>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{ el.style.transitionDelay=(i%4*.1)+'s'; obs.observe(el); });
+</script>
 </body>
-</html>
+    </html>
